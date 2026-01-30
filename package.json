@@ -1,6 +1,7 @@
 {
   "name": "opentype.js",
   "description": "OpenType font parser",
+  "version": "1.3.5",
   "author": {
     "name": "Frederik De Bleser",
     "email": "frederik@debleser.be"
@@ -18,7 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/opentypejs/opentype.js.git"
+    "url": "git://github.com/almanaclabs/opentype.js.git"
   },
   "main": "./dist/opentype.js",
   "browser": "./dist/opentype.js",
@@ -34,7 +35,7 @@
     "d:umd": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=iife --out-extension:.js=.min.js  --define:DEBUG=false --global-name=opentype --minify --sourcemap --footer:js=\"(function (root, factory) { if (typeof define === 'function' && define.amd)define(factory); else if (typeof module === 'object' && module.exports)module.exports = factory(); else root.opentype = factory(); }(typeof self !== 'undefined' ? self : this, () => ({...opentype,'default':opentype})));\"",
     "b:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.mjs     --define:DEBUG=false",
     "d:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.min.mjs --define:DEBUG=false --minify --sourcemap",
-    "publish": "git checkout -b release && pnpm build && git add -f lib/ module/ && git commit -m \"Release $VERSION\" && git tag -m '' $VERSION && git push --tags && git checkout master && git branch -D release"
+    "publish": "git checkout -b release && pnpm build && git add -f dist/ && git commit -m \"Release $VERSION\" && git tag -m '' $VERSION && git push --tags && git checkout master && git branch -D release"
   },
   "devDependencies": {
     "mocha": "^10.7.3",
