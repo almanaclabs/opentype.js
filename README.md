@@ -46,9 +46,11 @@ parse(...);
 </script>
 ```
 
-### via [npm](http://npmjs.org/) package manager
+### via package manager
 
 ```sh
+pnpm add opentype.js
+# or
 npm install opentype.js
 ```
  
@@ -69,11 +71,11 @@ If you plan on improving or debugging opentype.js, you can:
 - Fork the [opentype.js](https://github.com/opentypejs/opentype.js) repo
 - clone your fork `git clone git://github.com/yourname/opentype.js.git`
 - move into the project `cd opentype.js`
-- install needed dependencies with `npm install`
+- install needed dependencies with `pnpm install`
 - make your changes
-    - **option A:** for a simple build, use `npm run build`
-    - **option B:** for a development server, use `npm run start` and navigate to the `/docs` folder
-- check if all still works fine with `npm run test`
+    - **option A:** for a simple build, use `pnpm run build`
+    - **option B:** for a development server, use `pnpm run start` and navigate to the `/docs` folder
+- check if all still works fine with `pnpm run test`
 - commit and open a Pull Request with your changes. Thank you!
 
 ## Usage

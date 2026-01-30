@@ -24,16 +24,17 @@
   "browser": "./dist/opentype.js",
   "module": "./dist/opentype.mjs",
   "scripts": {
-    "build": "npm run b:umd && npm run b:esm",
-    "dist": " npm run d:umd && npm run d:esm",
-    "test": "npm run build && npm run dist && mocha --recursive && npm run lint",
+    "build": "pnpm run b:umd && pnpm run b:esm",
+    "dist": "pnpm run d:umd && pnpm run d:esm",
+    "test": "pnpm run build && pnpm run dist && mocha --recursive && pnpm run lint",
     "lint": "eslint src",
     "lint-fix": "eslint src --fix",
     "start": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.mjs     --define:DEBUG=false --global-name=opentype --watch --servedir=. --footer:js=\"(function (root, factory) { if (typeof define === 'function' && define.amd)define(factory); else if (typeof module === 'object' && module.exports)module.exports = factory(); else root.opentype = factory(); }(typeof self !== 'undefined' ? self : this, () => ({...opentype,'default':opentype})));\" --footer:js=\"new EventSource('/esbuild').addEventListener('change', () => location.reload())\"",
     "b:umd": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=iife --out-extension:.js=.js      --define:DEBUG=false --global-name=opentype                      --footer:js=\"(function (root, factory) { if (typeof define === 'function' && define.amd)define(factory); else if (typeof module === 'object' && module.exports)module.exports = factory(); else root.opentype = factory(); }(typeof self !== 'undefined' ? self : this, () => ({...opentype,'default':opentype})));\"",
     "d:umd": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=iife --out-extension:.js=.min.js  --define:DEBUG=false --global-name=opentype --minify --sourcemap --footer:js=\"(function (root, factory) { if (typeof define === 'function' && define.amd)define(factory); else if (typeof module === 'object' && module.exports)module.exports = factory(); else root.opentype = factory(); }(typeof self !== 'undefined' ? self : this, () => ({...opentype,'default':opentype})));\"",
     "b:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.mjs     --define:DEBUG=false",
-    "d:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.min.mjs --define:DEBUG=false --minify --sourcemap"
+    "d:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.min.mjs --define:DEBUG=false --minify --sourcemap",
+    "publish": "git checkout -b release && pnpm build && git add -f lib/ module/ && git commit -m \"Release $VERSION\" && git tag -m '' $VERSION && git push --tags && git checkout master && git branch -D release"
   },
   "devDependencies": {
     "mocha": "^10.7.3",

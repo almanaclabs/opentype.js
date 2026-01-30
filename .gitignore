@@ -6,3 +6,7 @@
 npm-debug.log
 /.reify-cache
 /experiments
+
+# pnpm
+.pnpm-store/
+.pnpm-debug.log
